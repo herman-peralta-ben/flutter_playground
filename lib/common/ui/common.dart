@@ -16,7 +16,9 @@ class SwitchItem extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(text,style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.blueAccent)),
+        Text(text,
+            style: const TextStyle(
+                fontWeight: FontWeight.bold, color: Colors.blueAccent)),
         Switch(
           value: value,
           onChanged: onChanged,
@@ -37,6 +39,45 @@ class SlowFadeImage extends StatelessWidget {
       image: imageUrl,
       fadeOutDuration: const Duration(milliseconds: 3000),
       fadeInDuration: const Duration(milliseconds: 3000),
+    );
+  }
+}
+
+class ExampleCard extends StatelessWidget {
+  final String title;
+  final Widget child;
+  final bool useRepaintBoundary;
+  const ExampleCard({
+    super.key,
+    required this.title,
+    required this.child,
+    this.useRepaintBoundary = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 4,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              title,
+              style: const TextStyle(fontSize: 16, color: Colors.blueAccent),
+              textAlign: TextAlign.center,
+            ),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Divider(),
+            ),
+            useRepaintBoundary ? RepaintBoundary(child: child) : child,
+          ],
+        ),
+      ),
     );
   }
 }
