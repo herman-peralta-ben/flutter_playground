@@ -1,34 +1,14 @@
 import 'package:flutter/material.dart';
 
-class RenderObjectExampleScreen extends StatelessWidget {
-  const RenderObjectExampleScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text("RenderObject Example Screen"),
-      ),
-      body: const Center(
-        child: _CustomCircularProgressIndicatorWidget(
-          value: 0.75,
-          color: Colors.green,
-          strokeWidth: 8.0,
-        ),
-      ),
-    );
-  }
-}
-
-// Define a custom circular progress indicator. Extending [LeafRenderObjectWidget]
-// since this widget doesn't need a child widget.
-class _CustomCircularProgressIndicatorWidget extends LeafRenderObjectWidget {
+/// Define a custom circular progress indicator. Extending [LeafRenderObjectWidget]
+/// since this widget doesn't need a child widget.
+class CustomCircularProgressIndicatorWidget extends LeafRenderObjectWidget {
   final double value; // Progress value between 0.0 and 1.0
   final Color color; // Color of the progress indicator
   final double strokeWidth; // Stroke width of the progress indicator
 
-  const _CustomCircularProgressIndicatorWidget({
+  const CustomCircularProgressIndicatorWidget({
+    super.key,
     required this.value,
     this.color = Colors.blue,
     this.strokeWidth = 4.0,
@@ -36,7 +16,7 @@ class _CustomCircularProgressIndicatorWidget extends LeafRenderObjectWidget {
 
   @override
   RenderObject createRenderObject(BuildContext context) {
-    return _RenderCustomCircularProgressIndicator(
+    return CustomCircularProgressIndicatorRender(
       value,
       color,
       strokeWidth,
@@ -44,7 +24,7 @@ class _CustomCircularProgressIndicatorWidget extends LeafRenderObjectWidget {
   }
 
   @override
-  void updateRenderObject(BuildContext context, _RenderCustomCircularProgressIndicator renderObject) {
+  void updateRenderObject(BuildContext context, CustomCircularProgressIndicatorRender renderObject) {
     renderObject
       ..value = value
       ..color = color
@@ -52,13 +32,13 @@ class _CustomCircularProgressIndicatorWidget extends LeafRenderObjectWidget {
   }
 }
 
-// RenderObject that handles the painting and layout
-class _RenderCustomCircularProgressIndicator extends RenderBox {
+/// RenderObject that handles the painting and layout
+class CustomCircularProgressIndicatorRender extends RenderBox {
   double _value;
   Color _color;
   double _strokeWidth;
 
-  _RenderCustomCircularProgressIndicator(this._value, this._color, this._strokeWidth);
+  CustomCircularProgressIndicatorRender(this._value, this._color, this._strokeWidth);
 
   // Update properties when the widget is rebuilt
   set value(double newValue) {
@@ -106,8 +86,10 @@ class _RenderCustomCircularProgressIndicator extends RenderBox {
   // Set the minimum size to 100x100, but respect the constraints provided by the parent
   @override
   Size computeDryLayout(BoxConstraints constraints) {
-    final desiredSize = constraints.constrain(const Size(100, 100));
-    return desiredSize;
+    // TODO need to check how to properly manage the size (get the parent widget size), this breaks RepaintBoundary
+    //final desiredSize = constraints.constrain(const Size(100, 100));
+    //return desiredSize;
+    return constraints.constrain(Size.infinite); // This allows the RenderBox to expand to fill the available space
   }
 
   // Perform the layout based on the constraints provided by the parent

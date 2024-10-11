@@ -82,7 +82,7 @@ class _WidgetRepaintBoundaryExampleScreenState extends State<WidgetRepaintBounda
                     ? const RepaintBoundary(child: CircularProgressIndicator())
                     : const CircularProgressIndicator(),
                 const Divider(),
-                Text("TODO ListView repaint example"),
+                const Text("TODO ListView repaint example"),
                 // TODO ListView repaint example
               ],
             ),

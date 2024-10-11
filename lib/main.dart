@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/examples/state/provider_counter_example.dart';
-import 'package:flutter_playground/examples/ui/render_object_example.dart';
+import 'package:flutter_playground/examples/ui/render_object_example/render_object_example.dart';
 
 void main() {
   runApp(const MyApp());
