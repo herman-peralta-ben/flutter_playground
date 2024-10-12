@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/examples/state/riverpod_counter_example/riverpod_counter_example.dart';
+import 'package:flutter_playground/examples/ui/render_object_example/render_object_example.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,8 +22,9 @@ class MyApp extends StatelessWidget {
             seedColor: Colors.blueGrey, brightness: Brightness.dark),
         useMaterial3: true,
       ),
-      home: const RiverpodCounterExampleScreen(),
-      // const WidgetRepaintBoundaryExampleScreen(),
+      home: //const RiverpodCounterExampleScreen(),
+          // const WidgetRepaintBoundaryExampleScreen(),
+          const RenderObjectExampleScreen(),
     );
   }
 }
