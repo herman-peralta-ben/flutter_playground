@@ -30,6 +30,10 @@ RouteBase get $rootRoute => GoRouteData.$route(
           path: '/repaintBoundary',
           factory: $WidgetRepaintBoundaryRouteExtension._fromState,
         ),
+        GoRouteData.$route(
+          path: '/navigationWithArgs/:type/:id',
+          factory: $NavigationDestinationWithArgsRouteExtension._fromState,
+        ),
       ],
     );
 
@@ -110,6 +114,28 @@ extension $WidgetRepaintBoundaryRouteExtension on WidgetRepaintBoundaryRoute {
 
   String get location => GoRouteData.$location(
         '/repaintBoundary',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $NavigationDestinationWithArgsRouteExtension
+    on NavigationDestinationWithArgsRoute {
+  static NavigationDestinationWithArgsRoute _fromState(GoRouterState state) =>
+      NavigationDestinationWithArgsRoute(
+        type: state.pathParameters['type']!,
+        id: int.parse(state.pathParameters['id']!),
+      );
+
+  String get location => GoRouteData.$location(
+        '/navigationWithArgs/${Uri.encodeComponent(type)}/${Uri.encodeComponent(id.toString())}',
       );
 
   void go(BuildContext context) => context.go(location);
