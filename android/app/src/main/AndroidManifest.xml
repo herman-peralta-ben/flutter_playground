@@ -32,7 +32,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="http" android:host="flutter_playground.com" />
                 <data android:scheme="https" />
-                <data android:scheme="testing" />
+                <data android:scheme="flutterplayground" />
             </intent-filter>
             <!-- endregion -->
         </activity>

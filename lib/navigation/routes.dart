@@ -26,7 +26,7 @@ final GlobalKey<NavigatorState> appRootNavigatorKey = GlobalKey<NavigatorState>(
 
 /*
  * Android:
- *    adb shell 'am start -d "<testing/http/https>://flutter_playground.com/<route>"' 
+ *    adb shell 'am start -d "<flutterplayground/http/https>://flutter_playground.com/<route>"'
  * iOS:
  *    // TODO
  */
@@ -59,7 +59,7 @@ class RootRoute extends GoRouteData {
         Example(_Routes.riverpodCounter, "RiverpodCounter"),
         Example(_Routes.renderObject, "RenderObject"),
         Example(_Routes.repaintBoundary, "RepaintBoundary"),
-        Example("testing://flutter_playground.com/navigationWithArgs/profile/42?name=herman&hobbies=coding,games",
+        Example("flutterplayground://flutter_playground.com/navigationWithArgs/profile/42?name=herman&hobbies=coding,games",
             "NavigationWithArgs"),
       ],
     );
@@ -94,15 +94,6 @@ class WidgetRepaintBoundaryRoute extends GoRouteData {
   }
 }
 
-/// Navigate using deeplink:
-/// Android
-/// * adb shell 'am start -d "testing://flutter_playground.com/navigationWithArgs/profile/42?name=herman&hobbies=coding,games"'
-/// * adb shell 'am start -d "testing://flutter_playground.com/navigationWithArgs/purchase/42?productId=food&notes=delivery"'
-/// * adb shell 'am start -d "testing://flutter_playground.com/navigationWithArgs/whatever/42?param1=hello&param2=world"'
-/// iOS
-/// * TODO
-/// Navigate programmatically:
-/// NavigationDestinationWithArgsRoute(...).go(context)
 class NavigationDestinationWithArgsRoute extends GoRouteData {
   final String type; // :type
   final int id; // :id
