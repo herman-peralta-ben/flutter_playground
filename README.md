@@ -2,15 +2,26 @@
 
 A new Flutter project.
 
-## Getting Started
+## Deeplinks
 
-This project is a starting point for a Flutter application.
+Navigate using deeplink:
+### Android
 
-A few resources to get you started if this is your first Flutter project:
+`adb shell 'am start -d "<flutterplayground/http/https>://flutter_playground.com/<route>"'`
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+```bash
+ adb shell 'am start -d "flutterplayground://flutter_playground.com/navigationWithArgs/profile/42?name=herman&hobbies=coding,games"'
+```
+```bash
+adb shell 'am start -d "flutterplayground://flutter_playground.com/navigationWithArgs/purchase/42?productId=food&notes=delivery"'
+```
+```bash
+adb shell 'am start -d "flutterplayground://flutter_playground.com/navigationWithArgs/whatever/42?param1=hello&param2=world"'
+```
+### iOS
+TODO
+## Navigate programmatically:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```dart
+NavigationDestinationWithArgsRoute(...).go(context)
+```
